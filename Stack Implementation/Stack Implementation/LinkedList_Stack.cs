@@ -14,7 +14,14 @@ namespace Stack_Implementation
         public LinkedList_Stack(params int[] input)
         {
          linkedList = new MyLinkedList(input);
-         Length = linkedList.Length;
+         this.Update();
+        }
+
+        private void Update()
+        {
+          bottom = linkedList.Head;
+          top = linkedList.Tail;
+          Length = linkedList.Length;
         }
 
         public void Push(int value)
@@ -24,9 +31,8 @@ namespace Stack_Implementation
          else
             linkedList.Append(value);
 
-          bottom = linkedList.Head;
-          top = linkedList.Tail;
-          Length = linkedList.Length;
+         this.Update();
+         
         }
 
         public int Peak()
@@ -43,7 +49,7 @@ namespace Stack_Implementation
                 throw new InvalidOperationException("Stack is empty");
 
             linkedList.Remove(Length - 1);
-            Length = linkedList.Length;
+            this.Update();
         }
       
         public bool IsEmpty()

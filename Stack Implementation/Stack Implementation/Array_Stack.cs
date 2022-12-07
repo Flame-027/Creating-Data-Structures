@@ -12,7 +12,12 @@ namespace Stack_Implementation
         {
             var converted = input.ToList();
             dynamic_Array = converted;
-            Length = dynamic_Array.Count;
+            this.Update();
+        }
+
+        private void Update()
+        {
+          Length = dynamic_Array.Count;
         }
 
         public void Push(string input)
@@ -22,7 +27,7 @@ namespace Stack_Implementation
             else
                 dynamic_Array.Add(input);
 
-            Length = dynamic_Array.Count;
+            this.Update();
         }
 
         public string Peak()
@@ -36,7 +41,7 @@ namespace Stack_Implementation
                 throw new InvalidOperationException("Stack is empty");
 
             dynamic_Array.RemoveAt(Length - 1);
-            Length = dynamic_Array.Count;
+            this.Update();
         }
 
         public bool IsEmpty()

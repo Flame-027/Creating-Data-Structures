@@ -40,6 +40,8 @@ namespace Linked_List_Implementation
                     Tail = currentNode;
                 }
             }
+           if (Tail == null)
+           Tail = Head;
         }
 
         public void Append(int input)
@@ -90,13 +92,13 @@ namespace Linked_List_Implementation
 
         public void Insert(int index, int value)
         {
-            if (index > Length + 1)
+            if (index > Length)
                 throw new InvalidOperationException("Index is out of bounds");
 
             else if (index == -1)
                 this.Prepend(value);
 
-            else if (index == Length + 1)
+            else if (index == Length - 1)
                 this.Append(value);
             else
             {
@@ -106,31 +108,38 @@ namespace Linked_List_Implementation
                 leader.Next = newNode; 
 
             }
+            Length++;
         }
 
         public void Remove(int index)
         {
-            if (index > Length)
+            if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");
 
-            var leader = this.TravereseToIndex(index - 1);
+            if (index == 0)
+                Head = null;
 
-            if(index == Length - 1)
+            else
             {
+              var leader = this.TravereseToIndex(index - 1);
+
+               if(index == Length - 1)
+               {
                 leader.Next = null;
                 this.Tail = leader;
-            }
-            else
-            { 
+               }
+               else
+               {   
                var follower = leader.Next.Next;
                leader.Next = follower;
+               }
             }
-           
+            Length--;
         }
 
         private Node TravereseToIndex(int index)
         {
-            if (index > Length)
+            if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");
 
               var currentNode = Head;
@@ -144,32 +153,32 @@ namespace Linked_List_Implementation
                return currentNode;
         }
 
-        public void Reverse()
-        {
-            if (Head == null)
-                throw new InvalidOperationException();
+        //public void Reverse()
+        //{
+        //    if (Head == null)
+        //        throw new InvalidOperationException();
 
-            else if (Head.Next == null) {}
+        //    else if (Head.Next == null) {}
 
-            else
-            {
-                var currentNode = Head;
-                var index = 0;
-                int[] reversed = new int[Length];
+        //    else
+        //    {
+        //        var currentNode = Head;
+        //        var index = 0;
+        //        int[] reversed = new int[Length];
 
-                while (currentNode != null)
-                {
-                    var placement = Length - 1 - index;
-                    reversed[placement] = currentNode.Value;
+        //        while (currentNode != null)
+        //        {
+        //            var placement = Length - 1 - index;
+        //            reversed[placement] = currentNode.Value;
 
-                    currentNode = currentNode.Next;
-                    index++;
-                }
-                this.CreateList(reversed);
-            }
+        //            currentNode = currentNode.Next;
+        //            index++;
+        //        }
+        //        this.CreateList(reversed);
+        //    }
             
 
 
-        }
+        //}
     }
 }

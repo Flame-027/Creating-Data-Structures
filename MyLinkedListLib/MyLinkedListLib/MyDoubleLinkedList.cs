@@ -29,21 +29,23 @@ namespace Linked_List_Implementation
 
            var currentNode = Head;
 
-                for (int i = 1; i < input.Length; i++)
-                {
-                    var nextNode = new DoubleNode(input[i]);
-                    currentNode.Next = nextNode;
-                    nextNode.Previous = currentNode;
+            for (int i = 1; i < input.Length; i++)
+            {
+                var nextNode = new DoubleNode(input[i]);
+                currentNode.Next = nextNode;
+                nextNode.Previous = currentNode;
 
-                    currentNode = currentNode.Next;
-                    Length++;
-                    
-                   if (i == input.Length - 1)
-                   {
+                currentNode = currentNode.Next;
+                Length++;
+
+                if (i == input.Length - 1)
+                {
                     Tail = currentNode;
                     break;
-                   }
                 }
+            }
+           if (Tail == null)
+           Tail = Head;
         }
 
         public void Append(int input)
@@ -97,13 +99,13 @@ namespace Linked_List_Implementation
 
         public void Insert(int index, int value)
         {
-            if (index > Length + 1 || index < -1)
+            if (index > Length || index < -1)
                 throw new InvalidOperationException("Index is out of bounds");
 
             else if (index == -1)
                 this.Prepend(value);
 
-            else if (index == Length + 1)
+            else if (index == Length)
                 this.Append(value);
             else
             {
@@ -117,32 +119,39 @@ namespace Linked_List_Implementation
                 follower.Previous = newNode; 
 
             }
+            Length++;
         }
 
         public void Remove(int index)
         {
-            if (index > Length)
+            if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");
 
-            var leader = this.TravereseToIndex(index - 1);
+             if (index == 0)
+                Head = null;
 
-            if(index == Length - 1)
-            {
+             else
+             {
+                var leader = this.TravereseToIndex(index - 1);
+
+                if(index == Length - 1)
+                {
                 leader.Next = null;
                 this.Tail = leader;
-            }
-            else
-            { 
-               var follower = leader.Next.Next;
-               leader.Next = follower;
-               follower.Previous = leader;
-            }
-           
+                }
+                else
+                { 
+                var follower = leader.Next.Next;
+                leader.Next = follower;
+                follower.Previous = leader;
+                }
+             } 
+            Length--;
         }
 
         private DoubleNode TravereseToIndex(int index)
         {
-            if (index > Length)
+            if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");
 
             var fromHead = (0 - index) * -1;

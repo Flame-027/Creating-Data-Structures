@@ -2,16 +2,16 @@
 
 namespace Stack_Implementation
 {
-    public class Stack
+    public class LinkedList_Stack
     {
         private MyLinkedList? linkedList;
         private Node? top;
         private Node? bottom;
         public int Length { get; private set; }
 
-        public Stack() { }
+        public LinkedList_Stack() {}
 
-        public Stack(params int[] input)
+        public LinkedList_Stack(params int[] input)
         {
          linkedList = new MyLinkedList(input);
          Length = linkedList.Length;
@@ -37,14 +37,18 @@ namespace Stack_Implementation
             return top.Value;
         }
         
-        public void Remove()
+        public void Pop()
         {
+            if (Length == 0)
+                throw new InvalidOperationException("Stack is empty");
+
             linkedList.Remove(Length - 1);
+            Length = linkedList.Length;
         }
       
-        public bool IsEmtpy()
+        public bool IsEmpty()
         {
-            if (bottom == null)
+            if (Length == 0)
                 return true;
             else
                 return false;

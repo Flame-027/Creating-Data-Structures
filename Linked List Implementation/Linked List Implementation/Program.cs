@@ -19,9 +19,9 @@ class Program
         linkedList.Remove(2);
         linkedList.Print();
 
-        Console.WriteLine();
-        linkedList.Reverse();
-        linkedList.Print();
+        //Console.WriteLine();
+        //linkedList.Reverse();
+        //linkedList.Print();
 
         Console.WriteLine();
         Console.WriteLine();

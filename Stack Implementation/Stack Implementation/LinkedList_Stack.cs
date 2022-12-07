@@ -19,8 +19,8 @@ namespace Stack_Implementation
 
         private void Update()
         {
-          bottom = linkedList.Head;
-          top = linkedList.Tail;
+          top = linkedList.Head;
+          bottom = linkedList.Tail;
           Length = linkedList.Length;
         }
 
@@ -29,7 +29,7 @@ namespace Stack_Implementation
          if (linkedList == null)
             linkedList = new MyLinkedList(value);
          else
-            linkedList.Append(value);
+            linkedList.Prepend(value);
 
          this.Update();
          
@@ -37,7 +37,7 @@ namespace Stack_Implementation
 
         public int Peak()
         {
-            if (bottom == null)
+            if (top == null)
                 throw new InvalidOperationException();
 
             return top.Value;
@@ -48,7 +48,7 @@ namespace Stack_Implementation
             if (Length == 0)
                 throw new InvalidOperationException("Stack is empty");
 
-            linkedList.Remove(Length - 1);
+            linkedList.Remove(0);
             this.Update();
         }
       

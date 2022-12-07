@@ -98,7 +98,7 @@ namespace Linked_List_Implementation
             else if (index == -1)
                 this.Prepend(value);
 
-            else if (index == Length - 1)
+            else if (index == Length)
                 this.Append(value);
             else
             {

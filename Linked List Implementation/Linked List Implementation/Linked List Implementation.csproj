@@ -9,12 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="libraries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="MyLinkedListLib">
-      <HintPath>libraries\MyLinkedListLib.dll</HintPath>
+      <HintPath>..\..\Libraries\MyLinkedListLib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

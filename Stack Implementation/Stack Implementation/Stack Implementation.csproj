@@ -7,10 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	
   <ItemGroup>
     <Reference Include="MyLinkedListLib">
-      <HintPath>libraries\MyLinkedListLib.dll</HintPath>
+      <HintPath>..\..\Libraries\MyLinkedListLib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

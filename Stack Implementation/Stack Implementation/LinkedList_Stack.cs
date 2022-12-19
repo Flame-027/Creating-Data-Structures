@@ -4,7 +4,7 @@ namespace Stack_Implementation
 {
     public class LinkedList_Stack
     {
-        private MyLinkedList? linkedList;
+        private MyLinkedList? _linkedList;
         private Node? top;
         private Node? bottom;
         public int Length { get; private set; }
@@ -13,23 +13,23 @@ namespace Stack_Implementation
 
         public LinkedList_Stack(params int[] input)
         {
-         linkedList = new MyLinkedList(input);
+         _linkedList = new MyLinkedList(input);
          this.Update();
         }
 
         private void Update()
         {
-          top = linkedList.Head;
-          bottom = linkedList.Tail;
-          Length = linkedList.Length;
+          top = _linkedList.Head;
+          bottom = _linkedList.Tail;
+          Length = _linkedList.Length;
         }
 
         public void Push(int value)
         {
-         if (linkedList == null)
-            linkedList = new MyLinkedList(value);
+         if (_linkedList == null)
+            _linkedList = new MyLinkedList(value);
          else
-            linkedList.Prepend(value);
+            _linkedList.Prepend(value);
 
          this.Update();
          
@@ -48,7 +48,7 @@ namespace Stack_Implementation
             if (Length == 0)
                 throw new InvalidOperationException("Stack is empty");
 
-            linkedList.Remove(0);
+            _linkedList.Remove(0);
             this.Update();
         }
       

@@ -3,7 +3,7 @@ namespace Stack_Implementation
 {
     public class Array_Stack
     {
-        private List<String> dynamic_Array;
+        private List<String> _dynamic_Array;
         public int Length { get; private set; }
 
         public Array_Stack() {}
@@ -11,28 +11,28 @@ namespace Stack_Implementation
         public Array_Stack(params string[] input)
         {
             var converted = input.ToList();
-            dynamic_Array = converted;
+            _dynamic_Array = converted;
             this.Update();
         }
 
         private void Update()
         {
-          Length = dynamic_Array.Count;
+          Length = _dynamic_Array.Count;
         }
 
         public void Push(string input)
         {
-            if (dynamic_Array == null)
-                dynamic_Array = new List<String> {input};
+            if (_dynamic_Array == null)
+                _dynamic_Array = new List<String> {input};
             else
-                dynamic_Array.Add(input);
+                _dynamic_Array.Add(input);
 
             this.Update();
         }
 
         public string Peak()
         {
-            return dynamic_Array[Length - 1];
+            return _dynamic_Array[Length - 1];
         }
 
         public void Pop()
@@ -40,13 +40,13 @@ namespace Stack_Implementation
              if (Length == 0)
                 throw new InvalidOperationException("Stack is empty");
 
-            dynamic_Array.RemoveAt(Length - 1);
+            _dynamic_Array.RemoveAt(Length - 1);
             this.Update();
         }
 
         public bool IsEmpty()
         {
-            if (dynamic_Array.Count == 0)
+            if (_dynamic_Array.Count == 0)
                 return true;
 
             else 

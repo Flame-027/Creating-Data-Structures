@@ -3,6 +3,8 @@ class Program
 {
     static void Main()
     {
+  // To see how the LinkedList works go to the LinkedList libary implementation directory.
+
         MyLinkedList<int> linkedList = new(1,2,3,4,5);
         linkedList.Print();
           
@@ -30,5 +32,7 @@ class Program
         myDoubleLinkedList.Remove(4);
         myDoubleLinkedList.Print();
      
+  // To see how the LinkedList works go to the LinkedList libary implementation directory.
+
     }
 }

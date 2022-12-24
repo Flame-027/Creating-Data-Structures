@@ -1,13 +1,13 @@
 ﻿
 namespace Linked_List_Implementation
 {
-    public class DoubleNode
+    public class DoubleNode<T>
     {
-        public int Value { get; set; }
-        public DoubleNode? Previous { get; set; }
-        public DoubleNode? Next { get; set; }
+        public T Value { get; set; }
+        public DoubleNode<T>? Previous { get; set; }
+        public DoubleNode<T>? Next { get; set; }
 
-        public DoubleNode(int input)
+        public DoubleNode(T input)
         {
             this.Value = input;
         }

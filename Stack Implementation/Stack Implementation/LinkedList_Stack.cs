@@ -2,18 +2,18 @@
 
 namespace Stack_Implementation
 {
-    public class LinkedList_Stack
+    public class LinkedList_Stack<T>
     {
-        private MyLinkedList? _linkedList;
-        private Node? top;
-        private Node? bottom;
+        private MyLinkedList<T>? _linkedList;
+        private Node<T>? top;
+        private Node<T>? bottom;
         public int Length { get; private set; }
 
         public LinkedList_Stack() {}
 
-        public LinkedList_Stack(params int[] input)
+        public LinkedList_Stack(params T[] input)
         {
-         _linkedList = new MyLinkedList(input);
+         _linkedList = new MyLinkedList<T>(input);
          this.Update();
         }
 
@@ -24,10 +24,10 @@ namespace Stack_Implementation
           Length = _linkedList.Length;
         }
 
-        public void Push(int value)
+        public void Push(T value)
         {
          if (_linkedList == null)
-            _linkedList = new MyLinkedList(value);
+            _linkedList = new MyLinkedList<T>(value);
          else
             _linkedList.Prepend(value);
 
@@ -35,7 +35,7 @@ namespace Stack_Implementation
          
         }
 
-        public int Peak()
+        public T Peak()
         {
             if (top == null)
                 throw new InvalidOperationException();

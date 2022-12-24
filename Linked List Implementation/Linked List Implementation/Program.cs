@@ -3,7 +3,7 @@ class Program
 {
     static void Main()
     {
-        MyLinkedList linkedList = new(1,2,3,4,5);
+        MyLinkedList<int> linkedList = new(1,2,3,4,5);
         linkedList.Print();
           
         linkedList.Append(6);
@@ -26,7 +26,7 @@ class Program
         Console.WriteLine();
         Console.WriteLine();
 
-        MyDoubleLinkedList myDoubleLinkedList = new(1,2,3,4,5);
+        MyDoubleLinkedList<int> myDoubleLinkedList = new(1,2,3,4,5);
         myDoubleLinkedList.Remove(4);
         myDoubleLinkedList.Print();
      

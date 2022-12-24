@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Linked_List_Implementation
 {
-    public class MyDoubleLinkedList
+    public class MyDoubleLinkedList<T>
     {
-        public DoubleNode Head { get; private set; }
-        public DoubleNode Tail { get; private set; }
+        public DoubleNode<T> Head { get; private set; }
+        public DoubleNode<T> Tail { get; private set; }
 
         public  int Length { get; private set; }
 
 
-        public MyDoubleLinkedList (params int[] input)
+        public MyDoubleLinkedList (params T[] input)
         {
             CreateList(input);
         }
 
-        private void CreateList(int[] input)
+        private void CreateList(T[] input)
         {
            if (input.Length == 0)
               throw new InvalidOperationException();
@@ -31,7 +31,7 @@ namespace Linked_List_Implementation
 
             for (int i = 1; i < input.Length; i++)
             {
-                var nextNode = new DoubleNode(input[i]);
+                var nextNode = new DoubleNode<T>(input[i]);
                 currentNode.Next = nextNode;
                 nextNode.Previous = currentNode;
 
@@ -48,18 +48,18 @@ namespace Linked_List_Implementation
            Tail = Head;
         }
 
-        public void Append(int input)
+        public void Append(T input)
         {
-            var newTail = new DoubleNode(input);
+            var newTail = new DoubleNode<T>(input);
             Tail.Next = newTail;
             newTail.Previous = Tail;
             Tail = newTail;   
             Length++;
         }
 
-        public void Prepend(int input)
+        public void Prepend(T input)
         {
-           DoubleNode newHead = new DoubleNode(input);
+           DoubleNode<T> newHead = new DoubleNode<T>(input);
            newHead.Next = Head;
            Head.Previous = newHead;
            Head = newHead;
@@ -76,7 +76,7 @@ namespace Linked_List_Implementation
 
         }
 
-        private List<int> LinkedListToList()
+        private List<T> LinkedListToList()
         {
             var currentNode = Head;
 
@@ -84,9 +84,9 @@ namespace Linked_List_Implementation
                 throw new InvalidOperationException();
 
             if (Head.Next == null)
-                return new List<int> {Head.Value};
+                return new List<T> {Head.Value};
 
-            List<int> result = new();
+            List<T> result = new();
 
             while (currentNode != null)
             {
@@ -97,7 +97,7 @@ namespace Linked_List_Implementation
             return result;
         }
 
-        public void Insert(int index, int value)
+        public void Insert(int index, T value)
         {
             if (index > Length || index < -1)
                 throw new InvalidOperationException("Index is out of bounds");
@@ -109,7 +109,7 @@ namespace Linked_List_Implementation
                 this.Append(value);
             else
             {
-                DoubleNode newNode = new(value);
+                DoubleNode<T> newNode = new(value);
                 var leader = this.TravereseToIndex(index - 1);
                 var follower = leader.Next;
 
@@ -149,7 +149,7 @@ namespace Linked_List_Implementation
             Length--;
         }
 
-        private DoubleNode TravereseToIndex(int index)
+        private DoubleNode<T> TravereseToIndex(int index)
         {
             if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");

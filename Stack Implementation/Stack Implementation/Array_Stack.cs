@@ -1,14 +1,14 @@
 ﻿
 namespace Stack_Implementation
 {
-    public class Array_Stack
+    public class Array_Stack<T>
     {
-        private List<String> _dynamic_Array;
+        private List<T> _dynamic_Array;
         public int Length { get; private set; }
 
         public Array_Stack() {}
 
-        public Array_Stack(params string[] input)
+        public Array_Stack(params T[] input)
         {
             var converted = input.ToList();
             _dynamic_Array = converted;
@@ -20,17 +20,17 @@ namespace Stack_Implementation
           Length = _dynamic_Array.Count;
         }
 
-        public void Push(string input)
+        public void Push(T input)
         {
             if (_dynamic_Array == null)
-                _dynamic_Array = new List<String> {input};
+                _dynamic_Array = new List<T> {input};
             else
                 _dynamic_Array.Add(input);
 
             this.Update();
         }
 
-        public string Peak()
+        public T Peak()
         {
             return _dynamic_Array[Length - 1];
         }

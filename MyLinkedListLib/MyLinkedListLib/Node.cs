@@ -1,12 +1,12 @@
 ﻿
 namespace Linked_List_Implementation
 {
-    public class Node
+    public class Node<T>
     {
-      public int Value { get; set; }
-      public Node? Next { get; set; }
+      public T Value { get; set; }
+      public Node<T>? Next { get; set; }
 
-      public Node(int input)
+      public Node(T input)
       {
         this.Value = input;
       }

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Linked_List_Implementation
 {
-    public class MyLinkedList
+    public class MyLinkedList<T>
     {
-        public Node Head { get; private set; }
-        public Node Tail { get; private set; }
+        public Node<T> Head { get; private set; }
+        public Node<T> Tail { get; private set; }
 
         public  int Length { get; private set; }
 
 
-        public MyLinkedList (params int[] input)
+        public MyLinkedList (params T[] input)
         {
             CreateList(input);
         }
 
-        private void CreateList(int[] input)
+        private void CreateList(T[] input)
         {
             if (input.Length == 0)
                 throw new InvalidOperationException();
@@ -31,7 +31,7 @@ namespace Linked_List_Implementation
 
             for (int i = 1; i < input.Length; i++)
             {
-                currentNode.Next = new Node(input[i]);
+                currentNode.Next = new Node<T>(input[i]);
                 currentNode = currentNode.Next;
                 Length++;
 
@@ -44,16 +44,16 @@ namespace Linked_List_Implementation
            Tail = Head;
         }
 
-        public void Append(int input)
+        public void Append(T input)
         {
-            Tail.Next = new Node(input);
+            Tail.Next = new Node<T>(input);
             Tail = Tail.Next;   
             Length++;
         }
 
-        public void Prepend(int input)
+        public void Prepend(T input)
         {
-           Node newHead = new Node(input);
+           Node<T> newHead = new Node<T>(input);
            newHead.Next = Head;
            Head = newHead;
            Length++;
@@ -69,7 +69,7 @@ namespace Linked_List_Implementation
 
         }
 
-        private List<int> LinkedListToList()
+        private List<T> LinkedListToList()
         {
             var currentNode = Head;
 
@@ -77,9 +77,9 @@ namespace Linked_List_Implementation
                 throw new InvalidOperationException();
 
             if (Head.Next == null)
-                return new List<int> {Head.Value};
+                return new List<T> {Head.Value};
 
-            List<int> result = new();
+            List<T> result = new();
 
             while (currentNode != null)
             {
@@ -90,7 +90,7 @@ namespace Linked_List_Implementation
             return result;
         }
 
-        public void Insert(int index, int value)
+        public void Insert(int index, T value)
         {
             if (index > Length)
                 throw new InvalidOperationException("Index is out of bounds");
@@ -103,7 +103,7 @@ namespace Linked_List_Implementation
             else
             {
                 var leader = this.TravereseToIndex(index - 1);
-                Node newNode = new(value);
+                Node<T> newNode = new(value);
                 newNode.Next = leader.Next;
                 leader.Next = newNode; 
 
@@ -137,7 +137,7 @@ namespace Linked_List_Implementation
             Length--;
         }
 
-        private Node TravereseToIndex(int index)
+        private Node<T> TravereseToIndex(int index)
         {
             if (index > Length - 1 || index < 0)
                 throw new InvalidOperationException("Index is out of bounds");

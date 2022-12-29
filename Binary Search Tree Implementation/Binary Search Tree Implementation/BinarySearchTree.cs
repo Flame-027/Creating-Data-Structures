@@ -25,7 +25,7 @@ namespace Binary_Search_Tree_Implementation
             else
             {
                 var current = _root;
-                bool completed = false;
+                var completed = false;
 
                 while (!completed)
                 {
@@ -41,7 +41,22 @@ namespace Binary_Search_Tree_Implementation
                 }
                 _size++;
             }
+        }
 
+        public Node Lookup(int value)
+        {
+            var current = _root;
+
+            while(true)
+            {
+                if (current.Value == value)
+                    return current;
+
+                if (value < current.Value)
+                    current = current.Left;
+                else
+                    current = current.Right;
+            }
         }
     }
 }

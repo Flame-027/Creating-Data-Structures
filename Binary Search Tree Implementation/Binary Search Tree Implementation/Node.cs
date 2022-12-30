@@ -7,8 +7,6 @@ namespace Binary_Search_Tree_Implementation
         public Node Right { get; set; }
         public int Value { get; set; }
 
-        public Node() { }
-
         public Node(int value)
         {
             this.Value = value;

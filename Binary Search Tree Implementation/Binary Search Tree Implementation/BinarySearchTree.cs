@@ -15,7 +15,10 @@
         public void Insert(int value)
         {
             if (_size == 0)
-                _root.Value = value;
+            {
+                _root = new Node(value);
+                _size++;
+            }
             else
             {
                 var current = _root;
@@ -23,17 +26,25 @@
 
                 while (!completed)
                 {
-                    if (current == null)
-                    {
-                        current = new Node(value);
-                        completed = true;
-                    }
                     if (value < current.Value)
-                        current = current.Left;
+                    {
+                        if (current.Left == null)
+                        {
+                            current.Left = new Node(value); 
+                            break;
+                        }                         
+                       current = current.Left;
+                    }
                     else
-                        current = current.Right;
+                    {
+                       if (current.Right == null)
+                       {
+                          current.Right = new Node(value);
+                          break;
+                       }
+                       current = current.Right;
+                    }
                 }
-                _size++;
             }
         }
 
